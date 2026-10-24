@@ -1,12 +1,26 @@
 name: lab-01
+
 on:
   push:
     paths:
       - .github/workflows/lab-01.yml
   workflow_dispatch:
+
 jobs:
   hello:
     runs-on: ubuntu-24.04
     steps:
       - name: 인사
         run: echo "첫 워크플로 실행 성공"
+
+      # TODO [1-1] 러너의 커널 정보와 CPU 개수 출력
+      - name: 러너 정보
+        run: |
+          uname -a
+          nproc
+
+      # TODO [1-2] 현재 작업 폴더의 파일 목록 출력
+      - name: 받기 전 폴더 목록
+        run: ls -la
+
+      # TODO [1-3] 저장소 코드를 받은 뒤 파일 목록 출력
