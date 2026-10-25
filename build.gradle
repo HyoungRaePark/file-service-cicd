@@ -1,11 +1,11 @@
-plugins {
+﻿plugins {
     id 'java'
     id 'org.springframework.boot' version '4.1.0'
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
-version = '1.3.0'
+version = '1.4.0'
 description = 'file-service'
 
 java {
@@ -23,33 +23,33 @@ ext {
 }
 
 dependencies {
-    // 웹 요청 처리. board-app-infra-lecture 와 같은 스타터.
+    // ???붿껌 泥섎━. board-app-infra-lecture ? 媛숈? ?ㅽ???
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 
-    // 생존 확인(/actuator/health)과 빌드 정보(/actuator/info).
+    // ?앹〈 ?뺤씤(/actuator/health)怨?鍮뚮뱶 ?뺣낫(/actuator/info).
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-    // AWS SDK for Java 2.x — 버전은 BOM 하나로 맞춤.
+    // AWS SDK for Java 2.x ??踰꾩쟾? BOM ?섎굹濡?留욎땄.
     implementation platform("software.amazon.awssdk:bom:${awsSdkVersion}")
     implementation 'software.amazon.awssdk:s3'
 
-    // 파일 목록을 DB 에. local 은 H2(메모리), prod 는 RDS MySQL.
+    // ?뚯씪 紐⑸줉??DB ?? local ? H2(硫붾え由?, prod ??RDS MySQL.
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
-    // 목록 캐시. local 은 메모리(simple), prod 는 ElastiCache(Valkey · Redis 프로토콜).
+    // 紐⑸줉 罹먯떆. local ? 硫붾え由?simple), prod ??ElastiCache(Valkey 쨌 Redis ?꾨줈?좎퐳).
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    // 파일 이벤트 기록. prod 는 DynamoDB (같은 AWS SDK BOM).
+    // ?뚯씪 ?대깽??湲곕줉. prod ??DynamoDB (媛숈? AWS SDK BOM).
     implementation 'software.amazon.awssdk:dynamodb'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-// /actuator/info 의 build 항목(version · time)을 만듦. 배포 후 "어느 버전이 떠 있나"를 여기서 확인함.
+// /actuator/info ??build ??ぉ(version 쨌 time)??留뚮벀. 諛고룷 ??"?대뒓 踰꾩쟾?????덈굹"瑜??ш린???뺤씤??
 springBoot {
     buildInfo()
 }
@@ -57,3 +57,4 @@ springBoot {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
